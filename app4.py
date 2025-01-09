@@ -1,17 +1,17 @@
 import streamlit as st
 import openai
 import PyPDF2
-import os
+#import os
 
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 
-load_dotenv()
+#load_dotenv()
 
 # Configurar la clave de API de OpenAI
-#openai.api_key = "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"  # Reemplaza con tu clave de API de OpenAI
+openai.api_key = "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"  # Reemplaza con tu clave de API de OpenAI
 
 
-openai.api_key= os.getenv("OPENAI_API_KEY")
+#openai.api_key= os.getenv("OPENAI_API_KEY")
 if openai.api_key is None:
     raise ValueError("La clave de API no está configurada. Por favor, verifica el archivo .env.")
 # Configurar la página de Streamlit
