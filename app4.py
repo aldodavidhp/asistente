@@ -4,10 +4,15 @@ import PyPDF2
 
 
 # Configurar la clave de API de OpenAI
-openai.api_key ="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" # Configurar la página de Streamlit
+#openai.api_key ="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" # Configurar la página de Streamlit
+
 st.set_page_config(page_title="Asistente", layout="centered")
 st.title("📄🤖 Asistente Formación docente")
 #st.markdown("Sube un archivo PDF y haz preguntas relacionadas con su contenido.")
+#openai.api_key = st.text_input("Ingresa la clave:", key="input_usuario",type="password")
+openai.api_key = st.text_input("Ingresa la clave:", type="password")
+print("Respuesta de api:\n", openai.api_key)
+
 
 # Función para extraer texto del PDF
 def extraer_texto_pdf(archivo_pdf):
@@ -33,6 +38,7 @@ if "historial" not in st.session_state:
     ]
 
 # Función para obtener respuesta de ChatGPT
+
 def obtener_respuesta(mensaje_usuario, contexto):
     st.session_state.historial.append({"role": "user", "content": mensaje_usuario})
     st.session_state.historial.append({"role": "system", "content": f"Contexto: {contexto}"})
@@ -48,7 +54,7 @@ def obtener_respuesta(mensaje_usuario, contexto):
     return mensaje_chatbot
 
 # Entrada del usuario
-if contenido_pdf:
+if contenido_pdf and openai.api_key:
     pregunta_usuario = st.text_input("Haz una pregunta sobre el contenido de tu formación:", key="input_usuario")
 
     # Mostrar respuesta basada en el PDF
