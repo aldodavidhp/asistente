@@ -1,20 +1,10 @@
 import streamlit as st
 import openai
 import PyPDF2
-#import os
 
-#from dotenv import load_dotenv
-
-#load_dotenv()
 
 # Configurar la clave de API de OpenAI
-openai.api_key = "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"  # Reemplaza con tu clave de API de OpenAI
-
-
-#openai.api_key= os.getenv("OPENAI_API_KEY")
-if openai.api_key is None:
-    raise ValueError("La clave de API no está configurada. Por favor, verifica el archivo .env.")
-# Configurar la página de Streamlit
+openai.api_key ="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" # Configurar la página de Streamlit
 st.set_page_config(page_title="Asistente", layout="centered")
 st.title("📄🤖 Asistente Formación docente")
 #st.markdown("Sube un archivo PDF y haz preguntas relacionadas con su contenido.")
@@ -50,7 +40,7 @@ def obtener_respuesta(mensaje_usuario, contexto):
     respuesta = openai.ChatCompletion.create(
         model="gpt-4o-mini",  # Modelo para ChatGPT Plus
         messages=st.session_state.historial,
-        temperature=0.7,
+        temperature=0.5,
         max_tokens=300
     )
     mensaje_chatbot = respuesta['choices'][0]['message']['content']
