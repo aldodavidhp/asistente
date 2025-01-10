@@ -47,7 +47,7 @@ if "historial" not in st.session_state:
 def obtener_respuesta(mensaje_usuario, contexto):
     st.session_state.historial.append({"role": "user", "content": mensaje_usuario})
     st.session_state.historial.append({"role": "system", "content": f"Contexto: {contexto}"})
-    openai.completions.create
+    #openai.completions.create
     
     respuesta = openai.chat_completions.create(
     #respuesta = openai.ChatCompletion.create(
