@@ -51,9 +51,10 @@ def obtener_respuesta(mensaje_usuario, contexto):
     #respuesta = openai.ChatCompletion.create(
     respuesta = openai.completions.create(
         model="gpt-4o-mini",  # Modelo para ChatGPT Plus
-        messages=st.session_state.historial,
+        #messages=st.session_state.historial,
+        prompt=st.session_state.historial,
         temperature=0.5,
-        max_tokens=300
+        max_tokens=100
     )
     mensaje_chatbot = respuesta['choices'][0]['message']['content']
     st.session_state.historial.append({"role": "assistant", "content": mensaje_chatbot})
