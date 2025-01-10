@@ -12,7 +12,7 @@ st.title("📄🤖 Asistente Formación docente")
 #openai.api_key = st.text_input("Ingresa la clave:", key="input_usuario",type="password")
 #openai.api_key = st.text_input("Ingresa la clave:", type="password")
 
-api_key = st.secrets["openai"]["api_key"]
+api_key = st.secrets["OPENAI_API_KEY"]
 
 # Configurar la API de OpenAI
 openai.api_key = api_key
