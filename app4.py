@@ -49,7 +49,7 @@ def obtener_respuesta(mensaje_usuario, contexto):
     st.session_state.historial.append({"role": "system", "content": f"Contexto: {contexto}"})
     openai.completions.create
     #respuesta = openai.ChatCompletion.create(
-    respuesta = openai.completions.create(
+    respuesta = openai.chat_completions.create(
         model="gpt-4o-mini",  # Modelo para ChatGPT Plus
         #messages=st.session_state.historial,
         prompt=st.session_state.historial,
