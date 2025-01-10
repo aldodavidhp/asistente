@@ -10,7 +10,12 @@ st.set_page_config(page_title="Asistente", layout="centered")
 st.title("📄🤖 Asistente Formación docente")
 #st.markdown("Sube un archivo PDF y haz preguntas relacionadas con su contenido.")
 #openai.api_key = st.text_input("Ingresa la clave:", key="input_usuario",type="password")
-openai.api_key = st.text_input("Ingresa la clave:", type="password")
+#openai.api_key = st.text_input("Ingresa la clave:", type="password")
+
+api_key = st.secrets["openai"]["api_key"]
+
+# Configurar la API de OpenAI
+openai.api_key = api_key
 print("Respuesta de api:\n", openai.api_key)
 
 
