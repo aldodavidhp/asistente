@@ -55,7 +55,7 @@ def obtener_respuesta(mensaje_usuario, contexto):
         temperature=0.5,
         max_tokens=100
     )
-    mensaje_chatbot = respuesta.choices[0].message['content']
+    mensaje_chatbot = respuesta.choices[0].message.content
     #mensaje_chatbot = respuesta['choices'][0]['message']['content']
   
     st.session_state.historial.append({"role": "assistant", "content": mensaje_chatbot})
