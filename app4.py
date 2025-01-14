@@ -2,7 +2,7 @@ import streamlit as st
 import openai
 import PyPDF2
 
-from openai import OpenAI
+from openai import OpenAI, RateLimitError 
 
 st.set_page_config(page_title="Asistente", layout="centered")
 st.title("📄🤖 Asistente Formación docente")
@@ -13,7 +13,7 @@ client=OpenAI(api_key = st.secrets["OPENAI_API_KEY"])
 
 # Configurar la API de OpenAI
 openai.api_key = api_key
-print("Respuesta de api:\n", openai.api_key)
+#print("Respuesta de api:\n", openai.api_key)
 
 
 # Función para extraer texto del PDF
@@ -45,7 +45,7 @@ def obtener_respuesta(mensaje_usuario, contexto):
     st.session_state.historial.append({"role": "user", "content": mensaje_usuario})
     st.session_state.historial.append({"role": "system", "content": f"Contexto: {contexto}"})
     #openai.completions.create
-    
+try:    
     #respuesta = openai.chat_completions.create(
     #respuesta = openai.ChatCompletion.create(
     respuesta = client.chat_completions.create(    
@@ -58,6 +58,9 @@ def obtener_respuesta(mensaje_usuario, contexto):
     mensaje_chatbot = respuesta['choices'][0]['message']['content']
     st.session_state.historial.append({"role": "assistant", "content": mensaje_chatbot})
     return mensaje_chatbot
+except RateLimitError as e: # Don't use openai
+  # Handle error 429
+  print(f"Error 429: {e}")
 
 # Entrada del usuario
 if contenido_pdf and openai.api_key:
