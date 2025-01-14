@@ -58,7 +58,7 @@ try:
         mensaje_chatbot = respuesta['choices'][0]['message']['content']
         st.session_state.historial.append({"role": "assistant", "content": mensaje_chatbot})
         return mensaje_chatbot   
-except RateLimitError as e: # Don't use openai
+except openai.RateLimitError as e
   # Handle error 429
   print(f"Error 429: {e}")
 
