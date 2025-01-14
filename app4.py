@@ -29,7 +29,7 @@ def extraer_texto_pdf(archivo_pdf):
 #archivo_subido = st.file_uploader("Sube un archivo PDF", type=["pdf"])
 #if archivo_subido:
     #with st.spinner("Extrayendo texto del PDF..."):
-contenido_pdf = extraer_texto_pdf("DDAW_ES_Guía didáctica_Docentes Digitales_ ABP web.docx.pdf")
+contenido_pdf = extraer_texto_pdf("DDAW1.pdf")
 #st.success("Texto extraído con éxito.")
 #st.text_area("Contenido del PDF", contenido_pdf, height=200)
 
