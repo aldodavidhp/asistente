@@ -40,25 +40,24 @@ if "historial" not in st.session_state:
     ]
 
 # Función para obtener respuesta de ChatGPT
-
-def obtener_respuesta(mensaje_usuario, contexto):
-    st.session_state.historial.append({"role": "user", "content": mensaje_usuario})
-    st.session_state.historial.append({"role": "system", "content": f"Contexto: {contexto}"})
-    #openai.completions.create
-try:    
-    respuesta = openai.chat_completions.create(
-    #respuesta = openai.ChatCompletion.create(
-    #respuesta = client.chat_completions.create(    
-        model="gpt-4o-mini",  # Modelo para ChatGPT Plus
-        #messages=st.session_state.historial,
-        prompt=st.session_state.historial,
-        temperature=0.5,
-        max_tokens=100
-    )
-    mensaje_chatbot = respuesta['choices'][0]['message']['content']
-    st.session_state.historial.append({"role": "assistant", "content": mensaje_chatbot})
-    return mensaje_chatbot
-    
+try: 
+    def obtener_respuesta(mensaje_usuario, contexto):
+        st.session_state.historial.append({"role": "user", "content": mensaje_usuario})
+        st.session_state.historial.append({"role": "system", "content": f"Contexto: {contexto}"})
+        #openai.completions.create
+       
+        respuesta = openai.chat_completions.create(
+        #respuesta = openai.ChatCompletion.create(
+        #respuesta = client.chat_completions.create(    
+            model="gpt-4o-mini",  # Modelo para ChatGPT Plus
+            #messages=st.session_state.historial,
+            prompt=st.session_state.historial,    
+            temperature=0.5,
+            max_tokens=100
+        )
+        mensaje_chatbot = respuesta['choices'][0]['message']['content']
+        st.session_state.historial.append({"role": "assistant", "content": mensaje_chatbot})
+        return mensaje_chatbot   
 except RateLimitError as e: # Don't use openai
   # Handle error 429
   print(f"Error 429: {e}")
