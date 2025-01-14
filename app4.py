@@ -44,10 +44,10 @@ if "historial" not in st.session_state:
 def obtener_respuesta(mensaje_usuario, contexto):
     st.session_state.historial.append({"role": "user", "content": mensaje_usuario})
     st.session_state.historial.append({"role": "system", "content": f"Contexto: {contexto}"})
-    #openai.completions.create
+
    
     respuesta = openai.chat.completions.create(
-    #respuesta = openai.ChatCompletion.create(
+    #respuesta = openai.ChatCompletionXXX.create(
     #respuesta = client.chat_completions.create(    
         model="gpt-4o-mini",  # Modelo para ChatGPT Plus
         messages=st.session_state.historial,
