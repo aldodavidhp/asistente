@@ -50,8 +50,8 @@ def obtener_respuesta(mensaje_usuario, contexto):
     #respuesta = openai.ChatCompletion.create(
     #respuesta = client.chat_completions.create(    
         model="gpt-4o-mini",  # Modelo para ChatGPT Plus
-        #messages=st.session_state.historial,
-        prompt=st.session_state.historial,    
+        messages=st.session_state.historial,
+        #prompt=st.session_state.historial,    
         temperature=0.5,
         max_tokens=100
     )
