@@ -52,7 +52,7 @@ def obtener_respuesta(mensaje_usuario, contexto):
         model="gpt-4o-mini",  # Modelo para ChatGPT Plus
         messages=st.session_state.historial,
         #prompt=st.session_state.historial,    
-        temperature=0.5,
+        temperature=0.1,
         #max_tokens=100
     )
     mensaje_chatbot = respuesta.choices[0].message.content
