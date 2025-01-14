@@ -2,17 +2,14 @@ import streamlit as st
 import openai
 import PyPDF2
 
-
-# Configurar la clave de API de OpenAI
-#openai.api_key ="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" # Configurar la página de Streamlit
+from openai import OpenAI
 
 st.set_page_config(page_title="Asistente", layout="centered")
 st.title("📄🤖 Asistente Formación docente")
-#st.markdown("Sube un archivo PDF y haz preguntas relacionadas con su contenido.")
-#openai.api_key = st.text_input("Ingresa la clave:", key="input_usuario",type="password")
-#openai.api_key = st.text_input("Ingresa la clave:", type="password")
-
 api_key = st.secrets["OPENAI_API_KEY"]
+
+#agregado 13-enero-2025
+client=OpenAI(api_key = st.secrets["OPENAI_API_KEY"])
 
 # Configurar la API de OpenAI
 openai.api_key = api_key
@@ -49,8 +46,9 @@ def obtener_respuesta(mensaje_usuario, contexto):
     st.session_state.historial.append({"role": "system", "content": f"Contexto: {contexto}"})
     #openai.completions.create
     
-    respuesta = openai.chat_completions.create(
+    #respuesta = openai.chat_completions.create(
     #respuesta = openai.ChatCompletion.create(
+    respuesta = client.chat_completions.create(    
         model="gpt-4o-mini",  # Modelo para ChatGPT Plus
         #messages=st.session_state.historial,
         prompt=st.session_state.historial,
